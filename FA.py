@@ -9,6 +9,7 @@ print('Year:', Input_year, '    ', 'Month:', Input_month)
 print('----------------------------------')
 print('SUN MON TUE WED THU FRI SAT')
 print('----------------------------------')
+Position_List = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 non_leap_year = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 leap_year = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 A = 0
@@ -53,7 +54,29 @@ else:
             if (i + 1) % 7 == 0:
                 print()
 
+print()
 Vaccine_Date = input('Date of Vaccination (DD/MM/YYYY) >> ')
+Position = Position_List.index(Vaccine_Date[3:5])
+if Vaccine_Date[3:5] >= '10':
+    if Vaccine_Date[3:5] != str(Input_month):
+        print('Invalid Month')
+        quit()
+    elif Vaccine_Date[6:10] != str(Input_year):
+        print('Invalid Year')
+        quit()
+    elif str(Vaccine_Date[:2]) > str(non_leap_year[Position]):
+        print('Invalid Date')
+else:
+    if Vaccine_Date[4:5] != str(Input_month):
+        print('Invalid Month')
+        quit()
+    elif Vaccine_Date[6:10] != str(Input_year):
+        print('Invalid Year')
+        quit()
+    elif str(Vaccine_Date[:2]) > str(non_leap_year[Position]):
+        print('Invalid Date')
+        quit()
+
 if Vaccine_Date == 0:
     quit()
 IC = input('NRIC Number (YYMMDD-SS-NNNN) >> ')
@@ -66,11 +89,6 @@ elif IC_years < 22:  # 2000 - 2021
 if Age < 18:
     print('Recipient is too young for the vaccination')
 else:
-
-
-
-
-
-
+    print('Done')
 
 # Q3
