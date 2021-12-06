@@ -110,7 +110,7 @@ while Category != '0':
             print(i+1, '.', item_list[i], 'RM', price_list[i])
         Select_item = input('Select an item (1-3) >> ')
         if item_list[int(Select_item) - 1] in Selected:
-            Yes = input('You have selected this item. Do you want to add or remove item? (Y/N)')
+            Yes = input('You have selected this item. Do you want to add or remove item? (Y/N) >> ')
             Add_Remove = input('Add(A) or Remove(R) >> ')
             if Add_Remove == 'A':
                 Position = Selected.index(item_list[int(Select_item) - 1])
@@ -131,51 +131,52 @@ while Category != '0':
         for i in range(3, 6):
             print(i-2, '.', item_list[i], 'RM', price_list[i])
         Select_item = input('Select an item (1-3) >> ')
-        if item_list[int(Select_item) - 1] in Selected:
+        if item_list[int(Select_item) + 2] in Selected:
             Yes = input('You have selected this item. Do you want to add or remove item? (Y/N)')
             Add_Remove = input('Add(A) or Remove(R) >> ')
             if Add_Remove == 'A':
-                Position = Selected.index(item_list[int(Select_item) - 1])
+                Position = Selected.index(item_list[int(Select_item) + 2])
                 Add_Amount = input('Enter number of unit you wish to add/remove >> ')
                 Selected_Units[Position] += int(Add_Amount)
             elif Add_Remove == 'R':
-                Position = Selected.index(item_list[int(Select_item) - 1])
+                Position = Selected.index(item_list[int(Select_item) + 2])
                 Remove_Amount = input('Enter number of unit you wish to add/remove >> ')
                 if int(Remove_Amount) > int(Selected_Units[Position]):
                     print('Operation Fail: The number of items removed is more than the number of selected items')
                 else:
                     Selected_Units[Position] -= int(Remove_Amount)
         else:
-            Selected.append(item_list[int(Select_item) - 1])
+            Selected.append(item_list[int(Select_item) + 2])
             Units = int(input('Enter number of unit >> '))
             Selected_Units.append(Units)
     elif Category == '3':
         for i in range(6, 9):
             print(i-5, '.', item_list[i], 'RM', price_list[i])
         Select_item = input('Select an item (1-3) >> ')
-        if item_list[int(Select_item) - 1] in Selected:
+        if item_list[int(Select_item) + 5] in Selected:
             Yes = input('You have selected this item. Do you want to add or remove item? (Y/N)')
             Add_Remove = input('Add(A) or Remove(R) >> ')
             if Add_Remove == 'A':
-                Position = Selected.index(item_list[int(Select_item) - 1])
+                Position = Selected.index(item_list[int(Select_item) + 5])
                 Add_Amount = input('Enter number of unit you wish to add/remove >> ')
                 Selected_Units[Position] += int(Add_Amount)
             elif Add_Remove == 'R':
-                Position = Selected.index(item_list[int(Select_item) - 1])
+                Position = Selected.index(item_list[int(Select_item) + 5])
                 Remove_Amount = input('Enter number of unit you wish to add/remove >> ')
                 if int(Remove_Amount) > int(Selected_Units[Position]):
                     print('Operation Fail: The number of items removed is more than the number of selected items')
                 else:
                     Selected_Units[Position] -= int(Remove_Amount)
         else:
-            Selected.append(item_list[int(Select_item) - 1])
+            Selected.append(item_list[int(Select_item) + 5])
             Units = int(input('Enter number of unit >> '))
             Selected_Units.append(Units)
-print(Selected_Units)
-print(Selected)
-print('Item                Price(per unit)            Total Unit        Total')
-print('----------------------------------------------------------------------')
-for k in range(len(Select_item)):
+print('Item                Price(per unit)       Total Unit        Total')
+print('-----------------------------------------------------------------')
+for k in range(len(Selected)):
     Position = item_list.index(Selected[k])
     Total_Price += price_list[Position] * Selected_Units[k]
-    print(Selected[k], 'RM', price_list[Position], Selected_Units[k], 'RM', price_list[Position] * Selected_Units[k])
+    print(Selected[k], '    RM', price_list[Position], '              ', Selected_Units[k], '             ', 'RM', price_list[Position] * Selected_Units[k])
+print()
+print('Total Price = RM', Total_Price)
+
